@@ -1,0 +1,36 @@
+
+<form #jogadorForm="ngForm" novalidate>
+
+  <input type="hidden" name="id" value="{{jogador?.id}}" 
+  [(ngModel)]="jogador.id" #id="ngModel" required/>
+
+  <p>Nome: </p>
+  <mat-form-field>
+    <input matInput type="text" name="nome" value="{{jogador?.nome}}" 
+    [(ngModel)]="jogador.nome" #nome="ngModel" required/>
+    <mat-error *ngIf="nome?.errors?.required">
+      <strong>Nome inválido!</strong>
+    </mat-error>
+    <br/>
+  </mat-form-field>
+  <br/>
+  <p>Quantidade Partidas: </p>
+  <mat-form-field>
+    <input matInput type="number" name="qtdPartidas" value="{{jogador?.qtdPartidas}}" 
+    [(ngModel)]="jogador.qtdPartidas" #qtdPartidas="ngModel" />
+  </mat-form-field>
+
+  <p>Quantidade Vitórias: </p>
+  <mat-form-field>
+    <input matInput type="number" name="qtdVitorias" value="{{jogador?.qtdVitorias}}" 
+    [(ngModel)]="jogador.qtdVitorias" #qtdVitorias="ngModel" />
+  </mat-form-field>
+  <br/><br/>
+
+
+  <mat-error *ngIf="jogador?.qtdVitorias > jogador?.qtdPartidas">
+    <strong>Número de Vitórias não pode ser maior que o número de Partidas!</strong>
+  </mat-error>
+  
+  <button mat-button type="submit" (click)="salvar(jogadorForm.value)" [disabled]="jogadorForm.invalid" >Salvar </button>
+</form>

@@ -1,0 +1,22 @@
+<div style="text-align:center">
+  <table>
+    <tr>
+      <th>Jogador</th>
+      <th>Vitórias</th>
+      <th>Partidas</th>
+    </tr>
+
+    <tr *ngFor="let jogador of jogadores">
+      <td>{{jogador.nome}}</td>
+      <td>{{jogador.qtdVitorias}}</td>
+      <td>{{jogador.qtdPartidas}}</td>
+      <td>
+      <a mat-button [routerLink]="['/jogador', jogador.id]">
+        Editar
+      </a>
+      </td>
+    </tr>
+    <br/>
+    <button mat-button type="button" [routerLink]="['/jogador', 0]">Novo Jogador</button>
+  </table>
+</div>
